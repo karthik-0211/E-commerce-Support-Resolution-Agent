@@ -34,12 +34,11 @@ text
 - 4GB+ RAM (for embeddings model)
 
 ## 🚀 Quick Start
-
-### 1. Clone the Repository
-
 ```bash
+1. Clone the Repository
 git clone https://github.com/yourusername/ecommerce-support-rag.git
 cd ecommerce-support-rag
+
 2. Install Dependencies
 bash
 pip install -r requirements.txt
@@ -47,11 +46,13 @@ Or install individually:
 
 bash
 pip install chromadb sentence-transformers google-genai python-dotenv
+
 3. Set Up API Key
 Create a .env file in the project root:
 
 env
 GOOGLE_API_KEY=your_gemini_api_key_here
+
 4. Generate Policy Corpus
 bash
 python scripts/create_policy_corpus.py
@@ -89,9 +90,11 @@ This creates embeddings and builds the vector index in chroma_db/.
 6. Run a Test
 bash
 python scripts/run_test.py
+
 7. Run Full Evaluation (20 Test Cases)
 bash
 python scripts/evaluate.py
+```
 📊 Agent Architecture
 1. Triage Agent (src/agents/triage_agent.py)
 Purpose: Classifies issue type and identifies missing information
@@ -160,6 +163,7 @@ ecommerce-support-rag/
 ├── .env                       # API key configuration
 ├── requirements.txt           # Dependencies
 └── README.md                  # This file
+
 📈 Evaluation Results
 Metric	Score	Status
 Citation Coverage	100%	✅ Perfect
@@ -180,12 +184,14 @@ json
   "customer_response": "I'm very sorry your cookies arrived damaged. Since these are perishable items, I've issued a full refund to your original payment method. You don't need to return the item. [Source: 04_perishable_food_items_policy.txt]",
   "compliance": "PASSED"
 }
+
 🧪 Test Cases Coverage
 Category	Count	Examples
 Standard Cases	8	Broken screen, wrong size, missing items
 Exception-Heavy	6	Melted cookies, opened toothbrush, final sale damage
 Conflict Cases	3	Marketplace disputes, EU cooling-off, CA consumer law
 Not-in-Policy	3	Better price found, past 30 days, emotional distress
+
 🛠️ Key Design Decisions
 Chunking Strategy
 Size: 1000 characters (optimal for MiniLM embeddings)
@@ -229,6 +235,7 @@ Chunking Settings (src/ingestion/document_processor.py)
 python
 chunk_size = 1000   # Characters per chunk
 chunk_overlap = 200 # Overlap between chunks
+
 🚦 API Quota Information
 The system uses Google Gemini API (free tier):
 
